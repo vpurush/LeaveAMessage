@@ -15,4 +15,12 @@ passport.use(new LocalStrategy(function (username, password, done) {
     });
 }));
 
-exports = passport;
+var authenticator = {
+    Configure: function (expressApp) {
+        expressApp.use(passport.initialize());
+        expressApp.use(passport.session());
+    },
+    Authenticate: passport.authenticate('local', { failureRedirect: '/login-signup' })
+};
+
+module.exports = authenticator;

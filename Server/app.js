@@ -1,13 +1,14 @@
-﻿var app = require('express');
-var passport = require('./Authentication/Authentication');
+﻿var express = require('express'),
+    app = express(),
+    authenticator = require('./Authentication/Authentication');
 
-app.configure(function () {
-    app.use(passport.initialize());
-    app.use(passport.session());
-});
-
-
+authenticator.Configure(app);
 app.listen(81);
 
-app.get('/', passport.authenticate('local'), function (req, res) {
+app.get('/', authenticator.Authenticate, function (req, res) {
+    res.send('hello world');
+});
+
+app.get('/login-signup', function (req, res) {
+    res.send('This is login page');
 });

@@ -1,6 +1,7 @@
-﻿var Db = require('mongodb').Db;
-var AppConfig = require('../Config.JSON');
-var db = new Db('LeaveAMessage', new Server(AppConfig.DbServer, AppConfig.DbPort));
+﻿var Db = require('mongodb').Db,
+    Server = require('mongodb').Server,
+    AppConfig = require('../Config'),
+    db = new Db('LeaveAMessage', new Server(AppConfig.DbServer, AppConfig.DbPort));
 
 
 
