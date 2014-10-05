@@ -1,7 +1,7 @@
 ﻿var Db = require('mongodb').Db,
     Server = require('mongodb').Server,
     AppConfig = require('../Config'),
-    db = new Db('LeaveAMessage', new Server(AppConfig.DbServer, AppConfig.DbPort));
+    db = new Db('LeaveAMessage', new Server(AppConfig.DbServer, AppConfig.DbPort), { w: 0, journal: false, fsync: false });
 
 
 
