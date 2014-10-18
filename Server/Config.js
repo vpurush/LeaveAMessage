@@ -2,4 +2,4 @@
     "DbServer" : "localhost",
     "DbPort" : "181"
 }
-exports = config;
+module.exports = config;

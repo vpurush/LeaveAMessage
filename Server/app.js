@@ -2,10 +2,16 @@
     app = express(),
     authenticator = require('./Authentication/Authentication'),
     path = require('path'),
-    fs = require('fs');
+    fs = require('fs'),
+    http = require('http'),
+    server = http.createServer(app),
+    io = require('socket.io')(server),
+    CommonConstants = require(path.join(__dirname, '../UI/Scripts/CommonConstants')),
+    LoginSignUp = require(path.join(__dirname, 'LoginSignup'));
 
 authenticator.Configure(app);
-app.listen(81);
+server.listen(81);
+LoginSignUp(io);
 
 app.get('/', authenticator.Authenticate, function (req, res) {
     res.send('hello world');
