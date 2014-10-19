@@ -17,7 +17,14 @@ var loginSignUp = function (io) {
                 }
                 if (user) {
                     if (user.Password == data.Password) {
-                        socket.emit(CommonConstants.LOGIN_SUCCESS_CLIENT_EVENT);
+                        socket.request.login(user, function (err) {
+                            if (err) {
+                                socket.emit(CommonConstants.LOGIN_FAILURE_CLIENT_EVENT, CommonConstants.ERROR_OCCURRED);
+                                console.log(err);
+                                return;
+                            }
+                            socket.emit(CommonConstants.LOGIN_SUCCESS_CLIENT_EVENT);
+                        })                        
                     } else {
                         socket.emit(CommonConstants.LOGIN_FAILURE_CLIENT_EVENT, CommonConstants.LOGIN_FAILURE_INVALID_PASSWORD);
                     }

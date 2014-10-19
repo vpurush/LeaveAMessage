@@ -5,16 +5,17 @@
     <link rel="stylesheet" href="/CSS/app.css" />
     <link rel="stylesheet" href="/CSS/bootstrap.min.css" />
 </head>
-<body ng-controller="LoginSignUp">
-    <div>
+<body>
+    <div ng-controller="Login">
         <h2>Login</h2>
         <form ng-submit="Login.Submit()">
             <input type="email" placeholder="Enter your email address" required ng-model="Login.EmailAddress" />
             <input type="password" placeholder="Enter your password" required ng-model="Login.Password" />
+            <span ng-bind="ErrorMessage"></span>
             <input type="submit" value="Login" />
         </form>
     </div>
-    <div>
+    <div ng-controller="SignUp">
         <h2>Sign Up</h2>
         <form ng-submit="SignUp.Submit()">
             <input type="email" placeholder="Enter your email address" required ng-model="SignUp.EmailAddress" />

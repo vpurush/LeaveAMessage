@@ -22,7 +22,7 @@ var UserRepository = function () {
         db.open(function (err) {
             if (err) {                
                 db.close();
-                return callBack(err, null);;
+                return callBack(err, null);
             }
             db.createCollection('User', function (err, userCollection) {
                 if (err) {                    
@@ -38,12 +38,12 @@ var UserRepository = function () {
         self.GetUserCollection(function (err, uCol, db) {
             if (err) {                
                 db.close();
-                return callBack(err, null);;
+                return callBack(err, null);
             }
             uCol.findOne({ EmailAddress: emailAddress }, function (err, userDbObj) {
                 if (err) {
                     db.close();
-                    return callBack(err, null);;
+                    return callBack(err, null);
                 }
                 db.close();
                 return callBack(null, userDbObj);
@@ -55,18 +55,18 @@ var UserRepository = function () {
         self.GetUser(emailAddress, function (err, userObj) {
             if (userObj) {
                 var err = new Error("Email already exists");
-                return callBack(err);;
+                return callBack(err);
             } else {
                 self.GetUserCollection(function (err, uCol, db) {
                     if (err) {
-                        return callBack(err);;
+                        return callBack(err);
                     }
                     var newUser = new User(emailAddress);
                     newUser.Password = password;
                     uCol.insert(newUser, function (err, result) {
                         if (err) {                            
                             db.close();
-                            return callBack(err);;
+                            return callBack(err);
                         }
                         db.close();
                         return callBack(null);
